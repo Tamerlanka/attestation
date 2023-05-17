@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>история заказов</title>
+</head>
+<body>
+<h3>Заказы</h3>
+<div th:each="order : ${orders}">
+    <h3 th:text="'Заказы №' + ${order.getNumber()}"></h3>
+    <img th:src="'/img/' + ${order.getProduct().getImageList()[0].getFileName()}" width="100px">
+    <p th:text="'Наименование: ' + ${order.getProduct().getTitle()}"></p>
+    <p th:text="'Количество: ' + ${order.getCount()}"></p>
+    <p th:text="'Цена: ' + ${order.getPrice()}"></p>
+    <p th:text="'Дата заказа: ' + ${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}"></p> <!-- Данным синтаксисом можно отформатировать значение даты и времени-->
+    <p th:text="'Статус заказа: ' + ${order.getStatus()}"></p>
+</div>
+</body>
+</html>
